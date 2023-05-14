@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+  db:
+    container_name: 'kazbooking-db'
+    image: postgres:14
+    restart: always
+    ports: 
+      - 5432:5432  
+    environment:
+      - POSTGRES_USER=panabook
+      - POSTGRES_PASSWORD=panabook
+      - POSTGRES_DB=panabook
+    networks:
+      - db
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+    volumes:
+      - ./src:/app/src
+    networks:
+      - db
+networks:
+  db:
+    driver: bridge

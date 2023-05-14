@@ -1,0 +1,16 @@
+FROM node:16.14.2-alpine AS builder
+WORKDIR /app
+COPY . .
+RUN yarn install --frozen-lockfile
+RUN yarn build
+
+FROM node:16.14.2-alpine AS final
+WORKDIR /app
+COPY --from=builder ./app/dist ./dist
+COPY package.json .
+COPY yarn.lock .
+RUN yarn install --frozen-lockfile --production
+RUN yarn add global @nestjs/cli
+
+CMD ["yarn", "start:prod"]
+
