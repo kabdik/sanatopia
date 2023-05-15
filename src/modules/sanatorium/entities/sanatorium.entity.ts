@@ -5,6 +5,7 @@ import { TableName } from '@/common/enums/table';
 import { SanatoriumStatus } from '../enums/sanatorium-status.enum';
 import { RoomEntity } from '@/modules/room/entities/room.entity';
 import { OwnerEntity } from '@/modules/owner/entities/owner.entity';
+import { SanatoriumTreatmentsEntity } from './sanatorium-treatments.entity';
 
 @Entity(TableName.SANATORIUM)
 export class SanatoriumEntity extends BaseEntity implements Sanatorium {
@@ -35,6 +36,9 @@ export class SanatoriumEntity extends BaseEntity implements Sanatorium {
 
   @OneToMany(() => RoomEntity, (room) => room.sanatorium, { cascade: true })
   rooms?: RoomEntity[];
+
+  @OneToMany(()=> SanatoriumTreatmentsEntity,(treatment)=>treatment.sanatorium,{cascade:true})
+  treatments?:SanatoriumTreatmentsEntity[]
 
   @ManyToOne(() => OwnerEntity, (owner) => owner.sanatoriums, { onDelete: 'CASCADE', onUpdate: 'CASCADE' })
   @JoinColumn({ name: 'ownerId' })

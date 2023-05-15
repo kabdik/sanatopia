@@ -1,9 +1,10 @@
 import { BaseEntity } from '@/common/entities/base.entity';
 import type { Room } from '../interfaces/room.interface';
 import { RoomType } from '../enums/room-type.enum';
-import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { TableName } from '@/common/enums/table';
 import { SanatoriumEntity } from '@/modules/sanatorium/entities/sanatorium.entity';
+import { RoomFacilitiesEntity } from './room-facilities.entity';
 
 @Entity(TableName.ROOM)
 export class RoomEntity extends BaseEntity implements Room {
@@ -31,4 +32,7 @@ export class RoomEntity extends BaseEntity implements Room {
   })
   @JoinColumn({ name: 'sanatoriumId' })
   sanatorium?: SanatoriumEntity;
+
+  @OneToMany(() => RoomFacilitiesEntity, (facility) => facility.room, { cascade: true })
+  facilities?: RoomFacilitiesEntity[];
 }

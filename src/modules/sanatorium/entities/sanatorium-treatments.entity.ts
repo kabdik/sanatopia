@@ -1,6 +1,6 @@
 import { BaseEntity } from '@/common/entities/base.entity';
 import { TableName } from '@/common/enums/table';
-import { Column, Entity, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 import type { SanatoriumTreatments } from '../interfaces/sanatorium-treatments.interface';
 import { SanatoriumEntity } from './sanatorium.entity';
 
@@ -15,6 +15,7 @@ export class SanatoriumTreatmentsEntity extends BaseEntity implements Sanatorium
   @Column('numeric', { precision: 10, scale: 2, nullable: true })
   price!: number | null;
 
-  @ManyToOne(()=>SanatoriumEntity,{onDelete:'CASCADE', onUpdate:'CASCADE'})
-  sanatorium?: SanatoriumEntity
+  @ManyToOne(() => SanatoriumEntity, (sanatorium)=> sanatorium.treatments,{ onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+  @JoinColumn({ name: 'sanatoriumId' })
+  sanatorium?: SanatoriumEntity;
 }
