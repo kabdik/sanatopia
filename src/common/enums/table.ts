@@ -9,4 +9,5 @@ export enum TableName {
   FACILITIES = 'facilities',
   SANATORIUM_PHOTO = 'sanatorium_photo',
   SANATORIUM_TREATMENTS = 'sanatorium_treatments',
+  ROOM_FACILITIES = 'room_facilities',
 }
