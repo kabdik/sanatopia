@@ -10,5 +10,6 @@ import { OwnerService } from './owner.service';
   imports: [TypeOrmModule.forFeature([OwnerEntity]), UserModule],
   controllers: [OwnerController],
   providers: [OwnerService],
+  exports: [OwnerService],
 })
 export class OwnerModule {}

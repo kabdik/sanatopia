@@ -9,8 +9,6 @@ export class SanatoriumController {
 
   @Post('')
   public async createRequest(@Body() data:CreateSanatoriumRequestDto):Promise<void> {
-    console.log(data);
-
-    await this.sanatoriumService.create();
+    await this.sanatoriumService.createRequest(data);
   }
 }

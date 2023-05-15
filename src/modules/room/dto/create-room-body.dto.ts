@@ -23,4 +23,8 @@ export class CreateRoomBodyDto {
   @Min(1)
   @IsNotEmpty()
   quantity!: number;
+
+  @IsNumber({}, { each: true })
+  @IsNotEmpty()
+  facilities!: number[];
 }

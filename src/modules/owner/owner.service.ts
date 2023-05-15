@@ -16,12 +16,12 @@ export class OwnerService {
     private readonly userService: UserService,
   ) {}
 
-  public async create(data: createOwnerDto): Promise<void> {
-    await this.ownerRepo.manager.transaction(async (em: EntityManager) => {
-      const user = await this.userService.create({ ...data, role: UserRole.OWNER }, em);
-      const owner = <Owner>em.create(OwnerEntity);
-      owner.userId = user.id;
-      await em.save(OwnerEntity, owner);
-    });
+  public async create(data: createOwnerDto, entityManager?: EntityManager): Promise<Owner> {
+    const em = entityManager || this.ownerRepo.manager;
+
+    const user = await this.userService.create({ ...data, role: UserRole.OWNER }, em);
+    const owner = <Owner>em.create(OwnerEntity);
+    owner.userId = user.id;
+    return em.save(OwnerEntity, owner);
   }
 }

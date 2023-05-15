@@ -1,6 +1,9 @@
 import { CreateRoomBodyDto } from '@/modules/room/dto/create-room-body.dto';
+import { CreateSanatoriumCustomTreatmentDto, CreateSanatoriumTreatmentDto } from '@/modules/treatment/dto/create-treatment.dto';
 import { Type } from 'class-transformer';
-import { IsArray, IsNotEmpty, IsNumber, IsString, Max, Min, ValidateNested } from 'class-validator';
+import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString, Max, Min, ValidateNested } from 'class-validator';
+
+
 
 export class CreateSanatoriumBodyDto {
   @IsNotEmpty()
@@ -36,14 +39,22 @@ export class CreateSanatoriumBodyDto {
   rooms!: CreateRoomBodyDto[];
 
   @IsNotEmpty()
-  @IsNumber({},{each:true})
+  @IsNumber({}, { each: true })
   services!: number[];
 
   @IsNumber({}, { each: true })
   @IsNotEmpty()
   imageIds!: number[];
 
+  @IsArray()
   @IsNotEmpty()
-  @IsNumber({},{each:true})
-  treatments!: number[];
+  @ValidateNested({each:true})
+  @Type(()=>CreateSanatoriumTreatmentDto)
+  treatments!: CreateSanatoriumTreatmentDto[];
+
+  @IsOptional()
+  @IsArray()
+  @ValidateNested({each:true})
+  @Type(()=>CreateSanatoriumCustomTreatmentDto)
+  customTreatments?: CreateSanatoriumCustomTreatmentDto[];
 }
