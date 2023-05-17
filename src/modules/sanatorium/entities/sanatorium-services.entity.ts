@@ -3,7 +3,7 @@ import { TableName } from '@/common/enums/table';
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 import type { SanatoriumServices } from '../interfaces/sanatorium-services.interface';
 import { SanatoriumEntity } from './sanatorium.entity';
-import { ServicesEntity } from './services.entity';
+import { ServicesEntity } from '../../services/entities/services.entity';
 
 @Entity(TableName.SANATORIUM_SERVICES)
 export class SanatoriumServicesEntity extends BaseEntity implements SanatoriumServices {

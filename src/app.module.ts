@@ -8,10 +8,12 @@ import { CommonModule } from './common/common.module';
 import { LoggerMiddleware } from './common/middleware/logger.middleware';
 import { DbConfig } from './config/db.config';
 import { AuthModule } from './modules/auth/auth.module';
+import { FacilitiesModule } from './modules/facilities/facilities.module';
 import { OwnerModule } from './modules/owner/owner.module';
 import { PhotoModule } from './modules/photo/photo.module';
 import { RoomModule } from './modules/room/room.module';
 import { SanatoriumModule } from './modules/sanatorium/sanatorium.module';
+import { ServicesModule } from './modules/services/services.module';
 import { TreatmentModule } from './modules/treatment/treatment.module';
 import { UserModule } from './modules/user/user.module';
 
@@ -44,6 +46,8 @@ import { UserModule } from './modules/user/user.module';
     OwnerModule,
     AuthModule,
     PhotoModule,
+    ServicesModule,
+    FacilitiesModule,
   ],
   providers: [
     // Global Guard, Authentication check on all routers

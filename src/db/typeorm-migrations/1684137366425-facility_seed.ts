@@ -1,5 +1,5 @@
-import { FacilityEntity } from '@/modules/room/entities/facilities.entity';
-import type { Facility } from '@/modules/room/interfaces/facility.interface';
+import { FacilityEntity } from '@/modules/facilities/entities/facilities.entity';
+import type { Facility } from '@/modules/facilities/interfaces/facility.interface';
 import _ from 'lodash';
 import { In, MigrationInterface, QueryRunner } from 'typeorm';
 

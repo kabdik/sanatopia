@@ -2,7 +2,7 @@ import { BaseEntity } from '@/common/entities/base.entity';
 import { TableName } from '@/common/enums/table';
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 import type { RoomFacilities } from '../interfaces/room-facilities.interface';
-import { FacilityEntity } from './facilities.entity';
+import { FacilityEntity } from '../../facilities/entities/facilities.entity';
 import { RoomEntity } from './room.entity';
 
 @Entity(TableName.ROOM_FACILITIES)

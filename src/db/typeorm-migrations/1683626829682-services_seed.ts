@@ -1,5 +1,5 @@
-import { ServicesEntity } from '@/modules/sanatorium/entities/services.entity';
-import type { Services } from '@/modules/sanatorium/interfaces/services.interface';
+import { ServicesEntity } from '@/modules/services/entities/services.entity';
+import type { Services } from '@/modules/services/interfaces/services.interface';
 import _ from 'lodash';
 import { In, MigrationInterface, QueryRunner } from 'typeorm';
 
